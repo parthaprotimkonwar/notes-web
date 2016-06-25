@@ -1,0 +1,195 @@
+<!-- ng-app is an directive -->
+
+<html ng-app="myApp">
+    <head>
+        
+        <meta name="content" content="Notes Web UI"> 
+        <meta charset="UTF-8">
+        <!-- IE Edge Meta Tag -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- Viewport -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <title>Notes Admin</title>
+    </head>
+    <body>
+        <!--<input type="text" ng-model="name_text" >
+        <h2>Hello {{name_text}}</h2>-->
+        
+        <!--This Controller controlls this part of the area/scope--> 
+        <div ng-controller="myController">
+            <div class="container">
+                
+                <fieldset>
+                    <legend> Create/Select a Subject</legend>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-11">
+                            <form>
+                                <div class="form-group">
+                                    <select class="form-control" id="selectSubject">
+                                        <option>Subject1</option>
+                                        <option>Subject2</option>
+                                        <option>Subject3</option>
+                                        <option>Subject4</option>
+                                    </select>
+                                </div>
+                                <!--<div class="container" style="position: relative;">
+                                    <div class="text-center" style="margin: 0 auto; z-index:1;position: absolute;left:40%; top:25%;background-color: white; width:80px ">OR</div>
+                                    <hr>
+                                </div>-->
+                                <!--Search Input Groups-->
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input class="form-control" placeholder="New Subject Name" type="text" id="subjectInput"/>
+                                        <span class="input-group-btn">
+                                            <button class="btn bth-default" type="submit">
+                                                 <span class="glyphicon glyphicon-plus"></span> Add Subject
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </fieldset>
+                
+                
+                <fieldset>
+                    <legend> Create/Select a Chapter</legend>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-11">
+                            <form>
+                                <div class="form-group">
+                                    <select class="form-control" id="selectChapters">
+                                        <option>Chapter1</option>
+                                        <option>Chapter2</option>
+                                        <option>Chapter3</option>
+                                        <option>Chapter4</option>
+                                    </select>
+                                </div>
+                                <!--<div class="container" style="position: relative;">
+                                    <div class="text-center" style="margin: 0 auto; z-index:1;position: absolute;left:40%; top:25%;background-color: white; width:80px ">OR</div>
+                                    <hr>
+                                </div>-->
+                                <!--Search Input Groups-->
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input class="form-control" placeholder="New Chapter Name" type="text" id="chapterInput"/>
+                                        <span class="input-group-btn">
+                                            <button class="btn bth-default" type="submit">
+                                                 <span class="glyphicon glyphicon-plus"></span> Add Chapter
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </fieldset>
+
+                
+                <fieldset>
+                    <legend> Add Question and Answer</legend>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-11">
+                            <form>
+                                <!--Add Question-->
+                                <div class="form-group">
+                                    <label for="questionTextarea">Question</label>
+                                    <textarea class="form-control" id="questionTextarea"></textarea>
+                                </div>
+                                
+                                <!--Add Answer-->
+                                <div class="form-group">
+                                    <label for="answerTextarea">Answer</label>
+                                    <textarea class="form-control" id="answerTextarea"></textarea>
+                                </div>
+                                
+                                <button class="btn bth-default pull-right" type="submit">
+                                     <span class="glyphicon glyphicon-plus"></span> Add Question Answer
+                                </button>
+                                
+                                
+                                <!--All Question Answers of that Chapter-->
+                                
+                                <table class = "table table-striped">
+                                   <caption>Question Answers of the Chapters</caption>
+
+                                   <thead>
+                                      <tr>
+                                         <th>Question</th>
+                                         <th>Answer</th>
+                                         <th>Order</th>
+                                      </tr>
+                                   </thead>
+
+                                   <tbody>
+                                      <tr>
+                                         <td>Tanmay</td>
+                                         <td>Bangalore</td>
+                                         <td>560001</td>
+                                      </tr>
+
+                                      <tr>
+                                         <td>Sachin</td>
+                                         <td>Mumbai</td>
+                                         <td>400003</td>
+                                      </tr>
+
+                                      <tr>
+                                         <td>Uma</td>
+                                         <td>Pune</td>
+                                         <td>411027</td>
+                                      </tr>
+                                   </tbody>
+
+                                </table>
+                            </form>
+                        </div>
+                    </div>
+                </fieldset>
+                
+
+                <!--<input class="btn btn-default pull-right" type="submit" value="SUBMIT"/>-->
+            </div>
+            <!--<input ng-model="query" placeholder="Enter your text" autofocus>
+            
+            <select ng-model="peopleOrder">
+                <option value="name">name</option>
+                <option value="occupation">occupation</option>
+            </select>
+            
+			
+            <label>
+                <input type="radio" ng-model="direction" name="direction" checked> Ascending
+                <input type="radio" ng-model="direction" name="direction" value="reverse"> Descending
+            </label>
+            
+            <li ng-repeat="author in authors | filter: query | orderBy: peopleOrder:direction">
+                <h1>Name is : {{ author.name }}</h1>
+                <p>
+                    {{author.occupation}} , {{author.company}}
+                </p>
+				<input ng-model="authors[$index].occupation" placeholder="Enter your text">
+                <br>
+            </li>-->
+        </div>
+        <!--Scope of this controller ends here-->
+        
+    </body>
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    
+    <!--Angular Dependencies-->
+    <script src="lib/angular.min.js"></script>
+    <script src="js/controllers.js"></script>
+    
+    <script src="js/script.js"></script>
+</html>
