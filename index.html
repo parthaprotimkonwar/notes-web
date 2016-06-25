@@ -44,7 +44,7 @@
                                     <div class="input-group">
                                         <input ng-model="newSubjectName" class="form-control" placeholder="New Subject Name" type="text" id="subjectInput"/>
                                         <span class="input-group-btn">
-                                            <button class="btn bth-default" type="submit">
+                                            <button class="btn bth-default" type="submit" ng-click="addSubject()">
                                                  <span class="glyphicon glyphicon-plus"></span> Add Subject
                                             </button>
                                         </span>
@@ -76,7 +76,7 @@
                                     <div class="input-group">
                                         <input ng-model="newChapterName" class="form-control" placeholder="New Chapter Name" type="text" id="chapterInput"/>
                                         <span class="input-group-btn">
-                                            <button class="btn bth-default" type="submit">
+                                            <button class="btn bth-default" type="submit" ng-click="addChapters()">
                                                  <span class="glyphicon glyphicon-plus"></span> Add Chapter
                                             </button>
                                         </span>
@@ -97,40 +97,38 @@
                                 <!--Add Question-->
                                 <div class="form-group">
                                     <label for="questionTextarea">Question</label>
-                                    <textarea class="form-control" id="questionTextarea"></textarea>
+                                    <textarea class="form-control" ng-model="newQuestion" id="questionTextarea"></textarea>
                                 </div>
                                 
                                 <!--Add Answer-->
                                 <div class="form-group">
                                     <label for="answerTextarea">Answer</label>
-                                    <textarea class="form-control" id="answerTextarea"></textarea>
+                                    <textarea class="form-control" ng-model="newAnswer" id="answerTextarea"></textarea>
                                 </div>
                                 
-                                <button class="btn bth-default pull-right" type="submit">
+                                <button class="btn bth-default pull-right" type="submit" ng-click="addQuestionAnswer()">
                                      <span class="glyphicon glyphicon-plus"></span> Add Question Answer
                                 </button>
                                 
                                 
                                 <!--All Question Answers of that Chapter-->
-                                <div ng-if="questionAnswerList">
-                                    <table class = "table table-striped">
-                                       <caption>Question Answers of the Chapters</caption>
-                                       <thead>
-                                          <tr>
-                                             <th>Question</th>
-                                             <th>Answer</th>
-                                             <th>Order</th>
-                                          </tr>
-                                       </thead>
-                                       <tbody>
-                                          <tr ng-repeat="questionAnswer in questionAnswerList">
-                                             <td>{{questionAnswer.question}}</td>
-                                             <td>{{questionAnswer.answer}}</td>
-                                             <td>{{questionAnswer.indexing}}</td>
-                                          </tr>
-                                       </tbody>
-                                    </table>
-                                </div>
+                                <table class = "table table-striped">
+                                   <caption>Question Answers of the Chapters</caption>
+                                   <thead>
+                                      <tr>
+                                         <th>Question</th>
+                                         <th>Answer</th>
+                                         <th>Order</th>
+                                      </tr>
+                                   </thead>
+                                   <tbody>
+                                      <tr ng-repeat="questionAnswer in questionAnswerList | filter: newQuestion">
+                                         <td>{{questionAnswer.question}}</td>
+                                         <td>{{questionAnswer.answer}}</td>
+                                         <td>{{questionAnswer.indexing}}</td>
+                                      </tr>
+                                   </tbody>
+                                </table>
                             </form>
                         </div>
                     </div>
