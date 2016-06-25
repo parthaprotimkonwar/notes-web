@@ -20,6 +20,7 @@
         
         <!--This Controller controlls this part of the area/scope--> 
         <div ng-controller="myController">
+
             <div class="container">
                 
                 <fieldset>
@@ -29,11 +30,9 @@
                         <div class="col-md-11">
                             <form>
                                 <div class="form-group">
-                                    <select class="form-control" id="selectSubject">
-                                        <option>Subject1</option>
-                                        <option>Subject2</option>
-                                        <option>Subject3</option>
-                                        <option>Subject4</option>
+                                    <select class="form-control" ng-init="subject_id=subjectList[0].subjectId" required ng-model="subject_id"
+                                            ng-change="getChapters()">
+                                        <option ng-repeat="subject in subjectList" value="{{subject.subjectId}}">{{subject.subjectName}}</option>
                                     </select>
                                 </div>
                                 <!--<div class="container" style="position: relative;">
@@ -43,7 +42,7 @@
                                 <!--Search Input Groups-->
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <input class="form-control" placeholder="New Subject Name" type="text" id="subjectInput"/>
+                                        <input ng-model="newSubjectName" class="form-control" placeholder="New Subject Name" type="text" id="subjectInput"/>
                                         <span class="input-group-btn">
                                             <button class="btn bth-default" type="submit">
                                                  <span class="glyphicon glyphicon-plus"></span> Add Subject
@@ -64,11 +63,8 @@
                         <div class="col-md-11">
                             <form>
                                 <div class="form-group">
-                                    <select class="form-control" id="selectChapters">
-                                        <option>Chapter1</option>
-                                        <option>Chapter2</option>
-                                        <option>Chapter3</option>
-                                        <option>Chapter4</option>
+                                    <select class="form-control" ng-init="chapter_id=chapterList[0].chapterId" required ng-model="chapter_id" ng-change="getQuestionAnswers()">
+                                        <option ng-repeat="chapter in chapterList" value="{{chapter.chapterId}}">{{chapter.chapterName}}</option>
                                     </select>
                                 </div>
                                 <!--<div class="container" style="position: relative;">
@@ -78,7 +74,7 @@
                                 <!--Search Input Groups-->
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <input class="form-control" placeholder="New Chapter Name" type="text" id="chapterInput"/>
+                                        <input ng-model="newChapterName" class="form-control" placeholder="New Chapter Name" type="text" id="chapterInput"/>
                                         <span class="input-group-btn">
                                             <button class="btn bth-default" type="submit">
                                                  <span class="glyphicon glyphicon-plus"></span> Add Chapter
@@ -116,39 +112,25 @@
                                 
                                 
                                 <!--All Question Answers of that Chapter-->
-                                
-                                <table class = "table table-striped">
-                                   <caption>Question Answers of the Chapters</caption>
-
-                                   <thead>
-                                      <tr>
-                                         <th>Question</th>
-                                         <th>Answer</th>
-                                         <th>Order</th>
-                                      </tr>
-                                   </thead>
-
-                                   <tbody>
-                                      <tr>
-                                         <td>Tanmay</td>
-                                         <td>Bangalore</td>
-                                         <td>560001</td>
-                                      </tr>
-
-                                      <tr>
-                                         <td>Sachin</td>
-                                         <td>Mumbai</td>
-                                         <td>400003</td>
-                                      </tr>
-
-                                      <tr>
-                                         <td>Uma</td>
-                                         <td>Pune</td>
-                                         <td>411027</td>
-                                      </tr>
-                                   </tbody>
-
-                                </table>
+                                <div ng-if="questionAnswerList">
+                                    <table class = "table table-striped">
+                                       <caption>Question Answers of the Chapters</caption>
+                                       <thead>
+                                          <tr>
+                                             <th>Question</th>
+                                             <th>Answer</th>
+                                             <th>Order</th>
+                                          </tr>
+                                       </thead>
+                                       <tbody>
+                                          <tr ng-repeat="questionAnswer in questionAnswerList">
+                                             <td>{{questionAnswer.question}}</td>
+                                             <td>{{questionAnswer.answer}}</td>
+                                             <td>{{questionAnswer.indexing}}</td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -189,7 +171,11 @@
     
     <!--Angular Dependencies-->
     <script src="lib/angular.min.js"></script>
+
     <script src="js/controllers.js"></script>
+    <script src="js/constants.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/notes_controller.js"></script>
     
     <script src="js/script.js"></script>
 </html>
