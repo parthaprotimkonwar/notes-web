@@ -6,4 +6,4 @@
     var myApp = angular.module('myApp', []);
     Here myApp is the name of the namespace and [] contains the dependecy services which need to be injected in the module.
 */
-var myApp = angular.module('myApp', []);
+var myApp = angular.module('myApp', ['ngImgCrop']);

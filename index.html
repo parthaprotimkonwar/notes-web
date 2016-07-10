@@ -12,7 +12,16 @@
         <!-- Minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/ng-img-crop.css">
         <title>Notes Admin</title>
+         <style>
+            .cropArea {
+              background: #E4E4E4;
+              overflow: hidden;
+              width:500px;
+              height:350px;
+            }
+          </style>
     </head>
     <body>
         <!--<input type="text" ng-model="name_text" >
@@ -22,6 +31,31 @@
         <div ng-controller="myController">
 
             <div class="container">
+                <fieldset>
+                    <legend>Course Image</legend>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+
+                        <div class="col-md-11">
+                            <row>
+                                <div class="col-md-8">
+                                    <div class="cropArea">
+                                      <img-crop image="myImage" result-image="myCroppedImage" result-image-format="image/jpeg" result-image-size="120"></img-crop>
+                                    </div>
+                                    <div><input type="file" id="fileInput" /></div>
+                                </div>
+                                <div  class="col-md-4">
+                                    <div>Cropped Image:</div>
+                                    <div><img ng-src="{{myCroppedImage}}" /></div>
+                                    <button class="btn bth-default" type="submit" ng-click="checkResume()">
+                                         <span class="glyphicon glyphicon-plus"></span> Attach to Course Image
+                                    </button>
+                                </div>
+                            </row>
+                        </div>
+                    </div>
+                </fieldset>
+
                 
                 <fieldset>
                     <legend> Create/Select a Subject</legend>
@@ -161,6 +195,8 @@
         </div>
         <!--Scope of this controller ends here-->
         
+
+
     </body>
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -174,6 +210,6 @@
     <script src="js/constants.js"></script>
     <script src="js/services.js"></script>
     <script src="js/notes_controller.js"></script>
-    
+    <script src="js/ng-img-crop.js"></script>
     <script src="js/script.js"></script>
 </html>
